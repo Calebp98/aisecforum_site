@@ -256,6 +256,12 @@
       object-fit: cover;
     }
 
+    /* Add washed-out effect for past events */
+    .past-event-image {
+      filter: grayscale(50%) brightness(1.4);
+      opacity: 0.6;
+    }
+
     .card-label {
       position: absolute;
       top: 12px;
@@ -361,8 +367,41 @@
   <main class="grid" id="articleGrid">
     <article class="card" data-category="forums">
       <div style="position:relative;">
+        <img src="ChatGPT Image Apr 24, 2025, 05_46_42 PM.png" alt="DC AI Security Forum" />
+        <span class="card-label">Upcoming</span>
+      </div>
+      <div class="card-content">
+        <h3 class="card-title">DC AI Security Forum '25</h3>
+        <p class="card-excerpt">A gathering of leading experts in AI safety and security, featuring keynotes, panels, and working groups.</p>
+      </div>
+    </article>
+
+    <article class="card" data-category="forums">
+      <div style="position:relative;">
+        <img src="ChatGPT Image Apr 24, 2025, 05_49_23 PM.png" alt="TLV AI Security Forum" />
+        <span class="card-label">Upcoming</span>
+      </div>
+      <div class="card-content">
+        <h3 class="card-title">TLV AI Security Forum '25</h3>
+        <p class="card-excerpt">Bringing together experts in AI development, cybersecurity, and policy to address critical security challenges.</p>
+      </div>
+    </article>
+
+    <article class="card" data-category="forums">
+      <div style="position:relative;">
+        <img src="ChatGPT Image Apr 24, 2025, 05_50_43 PM.png" alt="Vegas AI Security Forum" />
+        <span class="card-label">Upcoming</span>
+      </div>
+      <div class="card-content">
+        <h3 class="card-title">Vegas AI Security Forum '25</h3>
+        <p class="card-excerpt">The second annual forum advancing foundational principles for secure AI development.</p>
+      </div>
+    </article>
+
+    <article class="card" data-category="forums">
+      <div style="position:relative;">
         <img src="ChatGPT Image Apr 24, 2025, 05_46_42 PM.png" alt="Paris AI Security Forum" />
-        <span class="card-label">Forum</span>
+        <span class="card-label" data-status="past">Past Event</span>
       </div>
       <div class="card-content">
         <h3 class="card-title">Paris AI Security Forum '25</h3>
@@ -373,7 +412,7 @@
     <article class="card" data-category="workshops">
       <div style="position:relative;">
         <img src="ChatGPT Image Apr 24, 2025, 05_49_23 PM.png" alt="AI Security Workshop" />
-        <span class="card-label">Workshop</span>
+        <span class="card-label" data-status="past">Past Event</span>
       </div>
       <div class="card-content">
         <h3 class="card-title">AI Security and GCRs Workshop</h3>
@@ -384,7 +423,7 @@
     <article class="card" data-category="forums">
       <div style="position:relative;">
         <img src="ChatGPT Image Apr 24, 2025, 05_50_43 PM.png" alt="AI Security Forum" />
-        <span class="card-label">Forum</span>
+        <span class="card-label" data-status="past">Past Event</span>
       </div>
       <div class="card-content">
         <h3 class="card-title">AI Security Forum '24</h3>
@@ -395,7 +434,7 @@
     <article class="card" data-category="forums">
       <div style="position:relative;">
         <img src="ChatGPT Image Apr 24, 2025, 05_54_46 PM.png" alt="X-Infosec Forum" />
-        <span class="card-label">Forum</span>
+        <span class="card-label" data-status="past">Past Event</span>
       </div>
       <div class="card-content">
         <h3 class="card-title">X-Infosec Forum '23</h3>
@@ -414,6 +453,16 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // Add washed-out effect to past event images
+      const pastEventLabels = document.querySelectorAll('.card-label[data-status="past"]');
+      pastEventLabels.forEach(label => {
+        const container = label.parentElement;
+        const image = container.querySelector('img');
+        if (image) {
+          image.classList.add('past-event-image');
+        }
+      });
+
       // Typing animation
       const typingTextElement = document.getElementById('typing-text');
       const text = `We want to dramatically accelerate securing powerful AI models to avert catastrophes and fast-track scientific and economic breakthroughs.
