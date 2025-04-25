@@ -358,8 +358,8 @@
     <!-- Filter Pills -->
     <div class="filters" id="filterBar">
       <span class="filter active" data-filter="all">All</span>
-      <span class="filter" data-filter="forums">Forums</span>
-      <span class="filter" data-filter="workshops">Workshops</span>
+      <span class="filter" data-filter="upcoming-forums">Upcoming Forums</span>
+      <span class="filter" data-filter="upcoming-workshops">Upcoming Workshops</span>
     </div>
   </header>
 
@@ -518,8 +518,20 @@ If you would like to register for a future event, please register your interest 
           document.querySelector('.filter.active').classList.remove('active');
           f.classList.add('active');
           const target = f.dataset.filter;
+          
           cards.forEach(card => {
-            const match = target === 'all' || card.dataset.category === target;
+            const isUpcoming = !card.querySelector('.card-label[data-status="past"]');
+            const category = card.dataset.category;
+            
+            let match = false;
+            if (target === 'all') {
+              match = true;
+            } else if (target === 'upcoming-forums') {
+              match = isUpcoming && category === 'forums';
+            } else if (target === 'upcoming-workshops') {
+              match = isUpcoming && category === 'workshops';
+            }
+            
             card.style.display = match ? 'flex' : 'none';
           });
         });
