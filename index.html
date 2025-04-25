@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Security Forum</title>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    @font-face {
+      font-family: 'Departure Mono';
+      src: url('DepartureMono-1.422/DepartureMono-Regular.otf') format('opentype');
+    }
+
+    :root {
+      --bg-beige: #f3f0eb;
+      --text-dark: #111111;
+      --accent-olive: #8da77c;
+      --keyline: #e0e0e0;
+      --pill-radius: 9999px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Libre Franklin', sans-serif;
+      color: var(--text-dark);
+      background: var(--bg-beige);
+      line-height: 1.5;
+    }
+
+    /* Announcement */
+    .announcement {
+      font-size: 12px;
+      text-align: center;
+      padding: 4px 0;
+      border-bottom: 1px solid var(--keyline);
+    }
+
+    /* Navigation */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 5vw;
+      border-bottom: 1px solid var(--keyline);
+      background: #fff;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 24px;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-utils {
+      display: flex;
+      gap: 16px;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* Hero */
+    header.hero {
+      text-align: center;
+      padding: 72px 5vw 48px;
+    }
+
+    header.hero h1 {
+      font-family: 'Departure Mono', monospace;
+      font-size: clamp(32px, 5vw, 56px);
+      margin-bottom: 16px;
+    }
+
+    header.hero p {
+      font-size: 13px;
+      color: #444;
+      text-transform: none;
+      letter-spacing: normal;
+    }
+
+    /* Keep the original styling for the second paragraph */
+    header.hero p:last-child {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-dark);
+    }
+
+    /* Filter Pills */
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 32px;
+    }
+
+    .filter {
+      padding: 6px 18px;
+      font-size: 13px;
+      border: 1px solid var(--text-dark);
+      border-radius: var(--pill-radius);
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease;
+      text-transform: uppercase;
+    }
+
+    .filter.active { background: var(--accent-olive); color: #fff; border-color: var(--accent-olive); }
+
+    /* Article Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 32px;
+      padding: 64px 5vw;
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid var(--keyline);
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover { transform: scale(1.02); box-shadow: 0 6px 16px rgba(0,0,0,0.06); }
+
+    .card img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+    }
+
+    .card-label {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--accent-olive);
+      color: #fff;
+      padding: 4px 12px;
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      border-radius: var(--pill-radius);
+      text-transform: uppercase;
+    }
+
+    .card-content {
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .card-title {
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 14px;
+    }
+
+    .card-excerpt {
+      font-size: 13px;
+      color: #444;
+      flex: 1;
+    }
+
+    @media (max-width: 600px) {
+      nav { flex-direction: column; gap: 12px; }
+      .nav-links { order: 2; }
+      .nav-utils { order: 3; }
+    }
+
+    /* Footer */
+    footer {
+      padding: 32px 5vw;
+      border-top: 1px solid var(--keyline);
+      background: #fff;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 24px;
+    }
+
+    .footer-logo {
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: 0.05em;
+      margin-bottom: 24px;
+      color: var(--text-dark);
+    }
+
+    .footer-links a {
+      color: var(--text-dark);
+      opacity: 0.8;
+      transition: opacity 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero -->
+  <header class="hero">
+    <h1>AI Security Forum</h1>
+    <p>
+      We want to dramatically accelerate securing powerful AI models to avert catastrophes and fast-track scientific and economic breakthroughs. 
+    </p> </br><p>
+      We are bringing together experts in AI development, cybersecurity, and policy, to address this critical challenge.</p>
+    <!-- Filter Pills -->
+    <div class="filters" id="filterBar">
+      <span class="filter active" data-filter="all">All</span>
+      <span class="filter" data-filter="forums">Forums</span>
+      <span class="filter" data-filter="workshops">Workshops</span>
+    </div>
+  </header>
+
+  <!-- Article Grid -->
+  <main class="grid" id="articleGrid">
+    <article class="card" data-category="forums">
+      <div style="position:relative;">
+        <img src="ChatGPT Image Apr 24, 2025, 05_46_42 PM.png" alt="Paris AI Security Forum" />
+        <span class="card-label">Forum</span>
+      </div>
+      <div class="card-content">
+        <h3 class="card-title">Paris AI Security Forum '25</h3>
+        <p class="card-excerpt">A gathering of leading experts in AI safety and security, featuring keynotes, panels, and working groups.</p>
+      </div>
+    </article>
+
+    <article class="card" data-category="workshops">
+      <div style="position:relative;">
+        <img src="ChatGPT Image Apr 24, 2025, 05_49_23 PM.png" alt="AI Security Workshop" />
+        <span class="card-label">Workshop</span>
+      </div>
+      <div class="card-content">
+        <h3 class="card-title">AI Security and GCRs Workshop</h3>
+        <p class="card-excerpt">Bringing together experts in AI development, cybersecurity, and policy to address critical security challenges.</p>
+      </div>
+    </article>
+
+    <article class="card" data-category="forums">
+      <div style="position:relative;">
+        <img src="ChatGPT Image Apr 24, 2025, 05_50_43 PM.png" alt="AI Security Forum" />
+        <span class="card-label">Forum</span>
+      </div>
+      <div class="card-content">
+        <h3 class="card-title">AI Security Forum '24</h3>
+        <p class="card-excerpt">The second annual forum advancing foundational principles for secure AI development.</p>
+      </div>
+    </article>
+
+    <article class="card" data-category="forums">
+      <div style="position:relative;">
+        <img src="ChatGPT Image Apr 24, 2025, 05_54_46 PM.png" alt="X-Infosec Forum" />
+        <span class="card-label">Forum</span>
+      </div>
+      <div class="card-content">
+        <h3 class="card-title">X-Infosec Forum '23</h3>
+        <p class="card-excerpt">The inaugural cross-disciplinary forum on information security and AI safety.</p>
+      </div>
+    </article>
+  </main>
+
+  <script>
+    const filters = document.querySelectorAll('.filter');
+    const cards = document.querySelectorAll('.card');
+
+    filters.forEach(f => {
+      f.addEventListener('click', () => {
+        document.querySelector('.filter.active').classList.remove('active');
+        f.classList.add('active');
+        const target = f.dataset.filter;
+        cards.forEach(card => {
+          const match = target === 'all' || card.dataset.category === target;
+          card.style.display = match ? 'flex' : 'none';
+        });
+      });
+    });
+  </script>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-links">
+      <a href="#">Blog</a>
+      <a href="#">About</a>
+    </div>
+  </footer>
+</body>
+</html>
